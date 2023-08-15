@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
@@ -15,10 +16,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [WinLoseFragment.newInstance] factory method to
+ * Use the [GuideFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class WinLoseFragment : Fragment() {
+class GuideFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -33,9 +34,11 @@ class WinLoseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().findViewById<ConstraintLayout>(R.id.upMenu).visibility = View.VISIBLE
         requireActivity().findViewById<ImageButton>(R.id.backBtn).setOnClickListener {
             findNavController().popBackStack()
         }
+
     }
 
     override fun onCreateView(
@@ -43,7 +46,7 @@ class WinLoseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_win_lose, container, false)
+        return inflater.inflate(R.layout.fragment_guide, container, false)
     }
 
     companion object {
@@ -53,12 +56,12 @@ class WinLoseFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment WinLoseFragment.
+         * @return A new instance of fragment GuideFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            WinLoseFragment().apply {
+            GuideFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

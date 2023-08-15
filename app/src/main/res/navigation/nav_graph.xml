@@ -65,4 +65,14 @@
         app:destination="@id/winLoseFragment"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim" />
+    <fragment
+        android:id="@+id/guideFragment"
+        android:name="com.izzzya.gobletano.GuideFragment"
+        android:label="fragment_guide"
+        tools:layout="@layout/fragment_guide" />
+    <action
+        android:id="@+id/action_global_guideFragment"
+        app:destination="@id/guideFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim" />
 </navigation>

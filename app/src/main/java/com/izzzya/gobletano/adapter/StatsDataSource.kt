@@ -21,6 +21,10 @@ class StatsDataSource {
             Record(
                 "nugget",
                 71000
+            ),
+            Record(
+                "hello kitty",
+                58000
             )
         )
     }

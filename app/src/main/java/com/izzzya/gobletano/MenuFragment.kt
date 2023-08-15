@@ -22,7 +22,7 @@ class MenuFragment : Fragment() {
         requireActivity().findViewById<ConstraintLayout>(R.id.upMenu).visibility = View.GONE
 
         view.findViewById<ImageButton>(R.id.playBtn).setOnClickListener{
-            findNavController().navigate(R.id.action_global_gameFragment)
+            findNavController().navigate(R.id.action_global_levelsFragment)
         }
         view.findViewById<ImageButton>(R.id.settingsBtn).setOnClickListener{
             findNavController().navigate(R.id.action_global_settingsFragment)

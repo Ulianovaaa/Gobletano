@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        SharedPrefs(this)
         setContentView(R.layout.activity_main)
 
         this.window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE

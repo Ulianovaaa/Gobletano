@@ -31,7 +31,7 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val level = Random.nextInt(1..6)
+        val level = SharedPrefs.getLv()
         val quantity = when(level){
             1 -> 10
             2 -> 11

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
@@ -35,6 +36,7 @@ class SettingsFragment : Fragment() {
             true -> R.drawable.switchon
             else -> R.drawable.switchoff
         })
+        nameET.setText(SharedPrefs.getUn())
 
         soundSwitch.setOnClickListener {
             if (SharedPrefs.getSound()){
@@ -44,11 +46,14 @@ class SettingsFragment : Fragment() {
                 soundSwitch.setImageResource(R.drawable.switchon)
                 SharedPrefs.setSound(true)
             }
+            Toast.makeText(requireContext(), "restart app to hear changes", Toast.LENGTH_SHORT).show()
+
         }
 
         okBtn.setOnClickListener {
             if (nameET.text != null){
                 SharedPrefs.setUn(nameET.text.toString())
+                Toast.makeText(requireContext(), "saved.", Toast.LENGTH_SHORT).show()
             }
             findNavController().popBackStack()
         }

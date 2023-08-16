@@ -11,9 +11,10 @@ class SharedPrefs(context: Context) {
     companion object {
         private var sharedPref: SharedPreferences? = null
         private const val PREFERENCES = "prefs"
-        private const val USERNAME = "you"
+        private const val USERNAME: String = "you"
         private val Level = Int
         private val Levels_comp = 0
+        private val Time_ms = 0
         private val SOUND = true
 
         fun getLv(): Int{
@@ -35,8 +36,17 @@ class SharedPrefs(context: Context) {
                 ?.putInt("Levels_comp", l)
                 ?.apply()
         }
-        fun getUn(): String? {
-            return sharedPref!!.getString(USERNAME, "")
+        fun getTime(): Long{
+            return sharedPref!!.getLong("Time_ms", 0)
+        }
+
+        fun setTime(t: Long){
+            sharedPref?.edit()
+                ?.putLong("Time_ms", t)
+                ?.apply()
+        }
+        fun getUn(): String {
+            return sharedPref!!.getString(USERNAME, "").toString()
         }
 
         fun setUn(s: String){

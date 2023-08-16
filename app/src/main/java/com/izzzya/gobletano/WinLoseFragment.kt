@@ -1,34 +1,29 @@
 package com.izzzya.gobletano
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.izzzya.gobletano.adapter.Record
+import com.izzzya.gobletano.adapter.StatsDataSource
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [WinLoseFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class WinLoseFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
+    }
+    private fun timeStrFromLong(ms: Long): String{
+        val secs = (ms / 1000) % 60
+        val mins = (ms / (1000 * 60) % 60)
+        return String.format("%02d:%02d", mins, secs)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,6 +31,49 @@ class WinLoseFragment : Fragment() {
         requireActivity().findViewById<ImageButton>(R.id.backBtn).setOnClickListener {
             findNavController().popBackStack()
         }
+
+        val win = SharedPrefs.getTime()<60000
+        val header = view.findViewById<TextView>(R.id.headerTV)
+        val nextBtn = view.findViewById<ImageButton>(R.id.nextBtn)
+        val nextBtnTitle = view.findViewById<TextView>(R.id.nextBtnTitle)
+        val menuBtn = view.findViewById<ImageButton>(R.id.menuBtn)
+        val highScore = StatsDataSource.statsList.filter { it.name == SharedPrefs.getUn() }
+        if (win){
+            //win case
+            if (highScore.isEmpty()){
+                StatsDataSource.statsList.add(Record(
+                    SharedPrefs.getUn(),
+                    (60000-SharedPrefs.getTime())
+                ))
+                Toast.makeText(requireContext(), "New high score! Check statistics!", Toast.LENGTH_SHORT).show()
+            }else if (highScore[0].time > 60000-SharedPrefs.getTime()){
+                StatsDataSource.statsList.remove(highScore[0])
+                StatsDataSource.statsList.add(Record(
+                    SharedPrefs.getUn(),
+                    (60000-SharedPrefs.getTime())
+                ))
+                Toast.makeText(requireContext(), "New high score! Check statistics!", Toast.LENGTH_SHORT).show()
+            }
+            header.text = "Level completed!"
+            nextBtnTitle.text = "next level"
+            nextBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_global_levelsFragment)
+            }
+
+
+        }else{
+            //lose case
+            header.text = "Time's up! You lost \n :("
+            nextBtnTitle.text = "play again"
+            nextBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_global_gameFragment)
+            }
+        }
+        menuBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_global_menuFragment)
+        }
+
+
     }
 
     override fun onCreateView(
@@ -47,22 +85,6 @@ class WinLoseFragment : Fragment() {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment WinLoseFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            WinLoseFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
     }
 }

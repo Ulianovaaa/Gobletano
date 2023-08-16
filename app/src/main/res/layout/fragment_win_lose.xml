@@ -1,14 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WinLoseFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/headerTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/win_lose"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="48sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.35" />
+
+        <ImageButton
+            android:id="@+id/nextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/btnback"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerTV" />
+
+        <ImageButton
+            android:id="@+id/menuBtn"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/btnback"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nextBtn" />
+
+        <TextView
+            android:id="@+id/nextBtnTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next_lv_play_again"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="@+id/nextBtn"
+            app:layout_constraintEnd_toEndOf="@+id/nextBtn"
+            app:layout_constraintStart_toStartOf="@+id/nextBtn"
+            app:layout_constraintTop_toTopOf="@+id/nextBtn" />
+
+        <TextView
+            android:id="@+id/menuBtnTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_menu"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="@+id/menuBtn"
+            app:layout_constraintEnd_toEndOf="@+id/menuBtn"
+            app:layout_constraintStart_toStartOf="@+id/menuBtn"
+            app:layout_constraintTop_toTopOf="@+id/menuBtn" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

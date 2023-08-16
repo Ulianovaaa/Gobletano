@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
     <ImageView
         android:layout_margin="10dp"
@@ -14,7 +15,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/levelbutton" />
+        android:background="@drawable/levelbutton"
+        android:backgroundTint="@color/grey"
+        android:backgroundTintMode="multiply" />
 
     <TextView
         android:id="@+id/numTV"
@@ -26,5 +29,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/levelButton"
         app:layout_constraintEnd_toEndOf="@+id/levelButton"
         app:layout_constraintStart_toStartOf="@+id/levelButton"
-        app:layout_constraintTop_toTopOf="@+id/levelButton" />
+        app:layout_constraintTop_toTopOf="@+id/levelButton"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

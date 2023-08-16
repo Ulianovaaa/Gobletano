@@ -6,8 +6,12 @@
     <string name="settings">settings</string>
     <string name="statistics">statistics</string>
     <string name="how_to_play">how to play</string>
-    <string name="guide">Try to find the card with the golden cup on the back as fast as possible!</string>
+    <string name="guide">Try to find the card with the golden cup on the back as fast as possible within a given minute!</string>
     <string name="username">username</string>
     <string name="_0_00">0:00</string>
     <string name="_0">0</string>
+    <string name="your_name_here">YOUR NAME HERE</string>
+    <string name="ok">ok</string>
+    <string name="sound">sound</string>
+    <string name="change_name">change name</string>
 </resources>

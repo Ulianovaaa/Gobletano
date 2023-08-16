@@ -6,6 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.izzzya.gobletano.adapter.CardsAdapter
+import com.izzzya.gobletano.adapter.LevelsAdapter
 import kotlin.random.Random
 import kotlin.random.nextInt
 
@@ -31,18 +37,25 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().findViewById<ImageButton>(R.id.backBtn).setOnClickListener {
+            findNavController().popBackStack()
+        }
         val level = SharedPrefs.getLv()
         val quantity = when(level){
             1 -> 10
-            2 -> 11
-            3 -> 12
-            4 -> 13
-            5 -> 14
-            6 -> 15
+            2 -> 12
+            3 -> 14
+            4 -> 16
+            5 -> 18
+            6 -> 20
             else -> 10
         }
         val cards = generateCardList(quantity)
         //Log.i("LIST: ", " level ${level.toString()} / q ${quantity.toString()} / size ${cards.size.toString()} / list ${cards.toString()}")
+        val recyclerView: RecyclerView = view.findViewById<RecyclerView>(R.id.cardsGrid)
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 4)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.adapter = CardsAdapter(requireContext(), cards)
     }
 
     private fun generateCardList(q: Int): List<Card>{
